@@ -1,9 +1,9 @@
-## degg.praat: compute Oq for each period based solely on dEGG signal (method of Henrich et al., 2004)
+## degg.praat: compute Oq for each period based on dEGG signal (method of Henrich et al., 2004)
 
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
 
-procedure decom
+procedure degg
 
     ## create matrix with five cols:
     ## period_num, period_start, period_end, f0, oq
