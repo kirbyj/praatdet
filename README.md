@@ -18,7 +18,7 @@ Please send any comments, etc. to [j.kirby@ed.ac.uk](j.kirby@ed.ac.uk).
 
 ## General structure
 
-**praatdet** assume that the user has a number of EGG recordings for which s/he would like to obtain Oq estimates. These recordings may either be part of a stereo file (with e.g. a microphone recording on the other channel) or could be mono EGG files. **praatdet** determines opening and closing peaks using the dEGG signal, allows the user to add and delete points, permits the user to disregard particular periods (e.g., due to the presence of multiple opening peaks), and writes the output to a comma-delimited text file. Information about the peaks themselves is also saved in the form of a Praat ```PointProcess``` file.
+**praatdet** assumes that the user has a number of EGG recordings for which s/he would like to obtain Oq estimates. These recordings may either be part of a stereo file (with e.g. a microphone recording on the other channel) or could be mono EGG files. **praatdet** determines opening and closing peaks using the dEGG signal, allows the user to add and delete points, permits the user to disregard particular periods (e.g., due to the presence of multiple opening peaks), and writes the output to a comma-delimited text file. Information about the peaks themselves is also saved in the form of a Praat ```PointProcess``` file.
 
 Presently, Oq is determined using two methods:
 
