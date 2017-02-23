@@ -25,13 +25,13 @@ procedure writelns
         select Matrix 'name$'_degg
         currPeriod = Get value in cell... i 1
         pstart = Get value in cell... i 2
-        pend = Get value in cell... i 4
+        pend = Get value in cell... i 3
         f0 = Get value in cell... i 4
         degg_oq = Get value in cell... i 5
-        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, "degg,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", degg_oq
+        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, intervalLabel$, ",degg,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", degg_oq
         select Matrix 'name$'_howard
         howard_oq = Get value in cell... i 5
-        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, "howard,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", howard_oq
+        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, intervalLabel$, ",howard,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", howard_oq
     endfor
 
      ## Save PointProcess object
