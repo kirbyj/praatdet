@@ -1,0 +1,102 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 3.6250625 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 3.6250625 
+        intervals: size = 6 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.8936678321430297 
+            text = "" 
+        intervals [2]:
+            xmin = 0.8936678321430297 
+            xmax = 1.371586825414392 
+            text = "ngereng" 
+        intervals [3]:
+            xmin = 1.371586825414392 
+            xmax = 1.5898146762232332 
+            text = "maos" 
+        intervals [4]:
+            xmin = 1.5898146762232332 
+            xmax = 2.139748860261513 
+            text = "talam" 
+        intervals [5]:
+            xmin = 2.139748860261513 
+            xmax = 2.685318487283616 
+            text = "sesae" 
+        intervals [6]:
+            xmin = 2.685318487283616 
+            xmax = 3.6250625 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "seg" 
+        xmin = 0 
+        xmax = 3.6250625 
+        intervals: size = 7 
+        intervals [1]:
+            xmin = 0 
+            xmax = 1.5898146762232332 
+            text = "" 
+        intervals [2]:
+            xmin = 1.5898146762232332 
+            xmax = 1.7520267429768261 
+            text = "t" 
+        intervals [3]:
+            xmin = 1.7520267429768261 
+            xmax = 1.8699226008725345 
+            text = "a" 
+        intervals [4]:
+            xmin = 1.8699226008725345 
+            xmax = 1.9321837960600408 
+            text = "l" 
+        intervals [5]:
+            xmin = 1.9321837960600408 
+            xmax = 2.0441397066724374 
+            text = "a" 
+        intervals [6]:
+            xmin = 2.0441397066724374 
+            xmax = 2.139748860261513 
+            text = "m" 
+        intervals [7]:
+            xmin = 2.139748860261513 
+            xmax = 3.6250625 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "ann" 
+        xmin = 0 
+        xmax = 3.6250625 
+        intervals: size = 6 
+        intervals [1]:
+            xmin = 0 
+            xmax = 1.5898146762232332 
+            text = "" 
+        intervals [2]:
+            xmin = 1.5898146762232332 
+            xmax = 1.747050602483234 
+            text = "" 
+        intervals [3]:
+            xmin = 1.747050602483234 
+            xmax = 1.7520267429768261 
+            text = "p" 
+        intervals [4]:
+            xmin = 1.7520267429768261 
+            xmax = 1.8699226008725345 
+            text = "v" 
+        intervals [5]:
+            xmin = 1.8699226008725345 
+            xmax = 2.139748860261513 
+            text = "m" 
+        intervals [6]:
+            xmin = 2.139748860261513 
+            xmax = 3.6250625 
+            text = "" 
