@@ -22,9 +22,9 @@
 ##   intervalNum == 0, entire file will be processed.
 
 ## - minF0, maxF0: minimum and maximum pitch values
-## - wS: used to calculate window size for smoothing.
-##   wS = 0 is same as no smoothing.
-##   wS = 2 > 5-point window; ws = 3 > 7-point window; etc.
+## - k: used to calculate window size for smoothing.
+##   k = 0 is same as no smoothing.
+##   k = 2 > 5-point window; k = 3 > 7-point window; etc.
 ## - threshold: Howard's method threshold (default: 3/7)
 
 form File info
@@ -52,8 +52,8 @@ beginPause("Parameters")
     comment ("Minimum and maximum d0 thresholds")
     integer ("minF0", 75)
     integer ("maxF0", 600)
-    comment ("wS: Smoothing window size (points on each side)")
-    integer ("wS", 10)
+    comment ("k: Smoothing window size parameter (points on each side)")
+    integer ("k", 10)
     comment ("Threshold for Howard's method")
     real    ("threshold", 3/7) 
     comment ("Filter frequency cutoff")
@@ -82,7 +82,7 @@ for i from 1 to splitstring.strLen
 endfor
 
 ## Create output file, overwriting if present
-writeFileLine: "'directory$''outfile$'", "'header$',method,period,start,end,f0,Oq"
+writeFileLine: "'directory$''outfile$'", "'header$',label,method,period,start,end,f0,Oq"
 
 ## loop through files in directory$
 number_of_files = Get number of strings
@@ -121,6 +121,8 @@ for x from startFile to number_of_files
 			elsif intervalNum <> 0
             	start_time = Get start time of interval... intervalTier intervalNum
             	end_time = Get end time of interval... intervalTier intervalNum
+                ## overwrite intervalLabel$ with something more useful
+                intervalLabel$ = Get label of interval... intervalTier intervalNum
 			endif
 
         else
