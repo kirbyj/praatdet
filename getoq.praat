@@ -9,7 +9,7 @@
 ## NOTES AND ISSUES
 #########################
 
-## 1. Both the DECOM and Howard methods involve the determination of *periods*, 
+## 1. Both the dEGG and Howard methods involve the determination of *periods*, 
 ## measured from (dEGG) closing peak to closing peak. So the first point in the 
 ## PointProcess needs to be a closing peak, as does the last. These are computed
 ## from the dEGG signal, so the only difference between the methods is in the 
@@ -73,12 +73,11 @@ procedure getoq: .manualCheck
 
     ## Filter
     Copy: "'name$'_filtered"
-    ## should change this to allow for different filter rates and frequencies
-    Filter (pass Hann band)... 75 0 100
+    Filter (pass Hann band)... passFrequency 0 smoothHz
 
     ## Smooth the filtered signal
     Copy: "'name$'_fsmooth"
-    @smooth: wS
+    @smooth: k
     Formula... 'smooth.formula$'
 
     ## Get opening and closing peaks based on dEGG signal
