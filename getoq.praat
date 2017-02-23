@@ -48,7 +48,7 @@
 include splitstring.praat
 include smooth.praat
 include peakdet.praat
-include decom.praat
+include degg.praat
 include howard.praat
 include writelns.praat
 include plotoq.praat
@@ -114,10 +114,10 @@ procedure getoq: .manualCheck
         nb_periods = (nb_peaks / 2) - 1
 
         ####################################
-        ## Get Oq using DECOM method (dEGG)
+        ## Get Oq using dEGG-only method 
         ####################################
 
-        @decom
+        @degg
 
         ####################################
         ## Get Oq using Howard's method 

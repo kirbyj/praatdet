@@ -28,7 +28,7 @@ procedure writelns
         pend = Get value in cell... i 4
         f0 = Get value in cell... i 4
         degg_oq = Get value in cell... i 5
-        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, "decom,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", degg_oq
+        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, "degg,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", degg_oq
         select Matrix 'name$'_howard
         howard_oq = Get value in cell... i 5
         appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, "howard,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", howard_oq
