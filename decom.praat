@@ -1,8 +1,7 @@
 ## decom.praat: compute OQ for each period based on DEGG signal (DECOM method)
+
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
-
-## This script is released under the ?? license
 
 procedure decom
 
@@ -33,9 +32,6 @@ procedure decom
         Set value... .j 3 .period_end
         Set value... .j 4 .f0
         Set value... .j 5 .oq
-
-        #appendInfoLine: .period_start, ",", .period_end, ",", .f0, ",", .oq
-        #appendFileLine: "egg_out.txt", .j, ",", name$, ",degg,", .period_start, ",", .period_end, ",", .f0, ",", .oq
 
         .i = .i + 2
         .j = .j + 1

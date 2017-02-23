@@ -3,12 +3,6 @@
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
 
-## This script is released under the ?? license
-
-## This basically constructs a Praat Formula... that works for moving window 
-## averages of arbitrary length, to avoid having to manually average and 
-## weight e.g. 1*( (i-10)+(i+10) ) + 2*( (i-9) + (i+9) ) + ... etc.
-
 procedure exclude
 
     .excludePeriods = 1

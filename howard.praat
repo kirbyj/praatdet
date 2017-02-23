@@ -1,8 +1,7 @@
 ## howard.praat: compute OQ for each period based on Howard's method 
+
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
-
-## This script is released under the ?? license
 
 procedure howard
     

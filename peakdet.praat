@@ -3,10 +3,8 @@
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 22 Feb 2017
 
-## This script is released under the ?? license
-
-## computes the DEGG signal on the basis of a smoothed, filtered Sp waveform.
-## DEGG signal is then further smoothed using the same window.
+## computes the dEGG signal on the basis of a smoothed, filtered Sp waveform.
+## dEGG signal is then further smoothed using the same window.
 
 ## there are other smoothing regimes would could entertain/test, but the real 
 ## problem is with double peaks, which even aggressive smoothing is unlikely to 'solve'.

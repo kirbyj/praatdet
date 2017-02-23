@@ -1,9 +1,7 @@
-## plotOQ.praat: plot OQ by period for DEGG and Howard methods
+## plotoq.praat: plot Oq by period for DECOM and Howard methods
 
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
-
-## This script is released under the ?? license
 
 ## Note that if you see periods plotted starting at 0, something is wrong
 
@@ -42,7 +40,6 @@ procedure plotoq
 
     Blue
     Text: nb_periods - (nb_periods/10), "Right", 0.125, "Half", "+  Howard" 
-
 
 endproc
 

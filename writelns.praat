@@ -1,9 +1,8 @@
-## writeln.praat
+## writeln.praat: parse filename, write output file and PointProcess object
 
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 23 February 2017
 
-## Parse filename, write output to file
 
 procedure writelns
    

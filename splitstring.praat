@@ -1,6 +1,7 @@
-## splitstring.praat
+## splitstring.praat: parse a string into an "array"
 
-## Parse a string into an "array".
+## James Kirby <j.kirby@ed.ac.uk>
+## 23 February 2017
 ## (adapted from a procedure by Paul Boersma)
 
 procedure splitstring: .string$, .sep$
@@ -17,3 +18,14 @@ procedure splitstring: .string$, .sep$
         .array$[.strLen] = .value$
     until .sepIndex = 0
 endproc
+
+## Call with e.g.
+##
+##    @splitstring: name$, separator$
+##
+## then access with
+##
+##    splitstring.strLen
+##    splitstring.array$[i]
+##
+## etc.  

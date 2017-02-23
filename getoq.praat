@@ -1,31 +1,31 @@
 ## getoq.praat
 
 ## James Kirby <j.kirby@ed.ac.uk>
-## 14 January 2017
+## 23 February 2017
 
-## Given just the EGG signal (maybe smoothed, maybe not)... compute the OQ two ways
+## Given an EGG signal (maybe smoothed, maybe not)... compute Oq two ways
 
 #########################
 ## NOTES AND ISSUES
 #########################
 
-## 1. Both the DEGG and Howard methods involve the determination of *periods*, 
-## measured from (DEGG) closing peak to closing peak. So the first point in the 
+## 1. Both the DECOM and Howard methods involve the determination of *periods*, 
+## measured from (dEGG) closing peak to closing peak. So the first point in the 
 ## PointProcess needs to be a closing peak, as does the last. These are computed
-## from the DEGG signal, so the only difference between the methods is in the 
-## OQ (not F0) computation, in particular, with respect to how the start of the
+## from the dEGG signal, so the only difference between the methods is in the 
+## Oq (not f0) computation;, in particular, with respect to how the start of the
 ## opening phase is determined.  It is very much up to the USER to insure that 
-## the periods have been correctly selected. The PointProcess should BEGIN and 
-## END with CLOSING (i.e. positive) peaks. 
+## the periods have been correctly selected. Both the FIRST and LAST points in
+## the PointProcess should therefore be CLOSING (i.e. positive) peaks. 
 
-## Note that it is not enough to simply remove the point of uncertain DEGG 
+## Note that it is not enough to simply remove the point of uncertain dEGG 
 ## opening peaks, because the algorithm expects opening-closing peak pairs. 
+## Therefore, there is a separate step where whole periods are removed.
 
 ## 2. At present, nothing intelligent is done about multiple peaks: they
-## are not detected, nor is there an option given to do anything about them...
-## Currently we just determine maxima and minima using Praat's
-## To PointProcess (periodic, peaks)... function as detailed here:
-## http://www.fon.hum.uva.nl/praat/manual/Sound___Pitch__To_PointProcess__peaks____.html
+## are not detected, nor is there an option given to do anything about them.
+## Maxima and minima are currently determined using the built-in Praat function
+## To PointProcess (periodic, peaks)... 
 
 ## 3. It is possible to discard particular periods manually, a la peakdet. 
 ## This entails keeping track of the periods when adding/deleting points, and 
@@ -34,19 +34,21 @@
 ## matrices (or more precisely, set to 0).
 
 ## This is likely to be problematic only if the Oq of particular, individual
-## periods is ultimately of interest. In most use cases, this probably won't 
-## matter, because you will interpolate between the missing values at the analysis stage.
+## periods is ultimately of interest. In most cases this probably won't 
+## matter, because you will interpolate between the missing values at the analysis 
+## stage. However, this ultimately depends on your use case.
 
-## I *think* what I recommend is trying to set points where you think there
-## (should be) pulses, then explicitly removing the measures in the 2nd stage. 
-### This will indicate that there 'was' a pulse there, but that it was 
-## manually removed (i.e., set to 0).
+## One advantage of this method - i.e., ensuring that there are points where 
+## (you think) there should be pulses, then explicitly removing whole periods
+## at a later stage - is that this preserves information by indicating in the 
+## output file  that there 'was' a pulse there, but that it was manually removed 
+## (i.e., set to 0). 
 
 ## Dependencies
 include splitstring.praat
 include smooth.praat
 include peakdet.praat
-include degg.praat
+include decom.praat
 include howard.praat
 include writelns.praat
 include plotoq.praat
@@ -54,10 +56,10 @@ include exclude.praat
 
 procedure getoq: .manualCheck
 
-    ## Clear windows
+    ## Clear Picture window
     Erase all
 
-    ## Extract
+    ## Extract Lx signal
     name$ = selected$ ("Sound", 1)
     Extract one channel... eggChan
   
@@ -79,15 +81,15 @@ procedure getoq: .manualCheck
     @smooth: wS
     Formula... 'smooth.formula$'
 
-    ## Get opening and closing peaks based on DEGG signal
+    ## Get opening and closing peaks based on dEGG signal
     @peakdet
-
-    ## Set flag to enter main loop
-    .findOQ = 1
 
     #############
     ## Main loop
     #############
+    
+    ## Set flag 
+    .findOQ = 1
 
     while .findOQ <> 0
 
@@ -100,8 +102,8 @@ procedure getoq: .manualCheck
 
         ## if we could assume the entire file was relevant than we could just say
         # nb_peaks = Get number of points
+        ## but given we are potentially interested only in a sub-region...
         
-        ## but given we are potential interested in a sub-region then...
         ## get the first point *following the onset* of the region
         first_point  = Get high index... start_time
         ## get the last point *preceding the offset* of the region
@@ -115,7 +117,7 @@ procedure getoq: .manualCheck
         ## Get Oq using DECOM method (dEGG)
         ####################################
 
-        @degg
+        @decom
 
         ####################################
         ## Get Oq using Howard's method 
@@ -169,6 +171,9 @@ procedure getoq: .manualCheck
                 .findOQ = 0
             endif
 
+        else
+            ## Not doinhg manual check; get me out of this loop!
+            .findOQ = 0
         endif 
 
     endwhile
