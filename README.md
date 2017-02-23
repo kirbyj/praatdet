@@ -1,11 +1,11 @@
 # praatdet
 
-A suite of Praat scripts to determine the open quotient (Oq) and fundamental frequency based on the EGG waveform.
+A suite of Praat scripts to determine the open quotient (Oq) and fundamental frequency (f0) based on the EGG waveform.
 
 
 ## Background
 
-This set of scripts was originally inspired by my attempts to use the [**peakdet**](http://voiceresearch.free.fr/egg/) tools developed by Nathalie Henrich, Cédric Grendrot, and Alexis Michaud. In the course of modifying their code to batch-process large numbers of files, I found myself wishing for a number of other modifications to the general [**peakdet**](http://voiceresearch.free.fr/egg/) workflow. Eventually I decided that the easiest solution would be try and implement something similar myself. I chose Praat for this primarily because it provides a relatively intuitive and easy-to-use graphical interface for editing pulse trains. Praat comes with its own set of problems and I in no way claim it is superior to Matlab for this purpose; however, I have learned a great deal about working with EGG signals in the process of developing these tools.
+This set of scripts was originally inspired by my attempts to use the [**peakdet**](http://voiceresearch.free.fr/egg/) tools developed by Nathalie Henrich, Cédric Grendrot, and Alexis Michaud. In the course of modifying their code to batch-process large numbers of files, I found myself wishing for a number of other modifications to the general [**peakdet**](http://voiceresearch.free.fr/egg/) workflow. Eventually I decided that the easiest solution would be try and implement something similar myself. I chose to work in Praat primarily because it provides a relatively intuitive and easy-to-use graphical interface for editing pulse trains. Praat comes with its own set of problems and I in no way claim it is superior to Matlab for this purpose; however, I have learned a great deal about working with EGG signals in the process of developing these tools.
 
 ## Warning!
 
