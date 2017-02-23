@@ -15,7 +15,8 @@ procedure exclude
         beginPause: "Exclude periods"
             comment: "Do you want to manually exclude any periods?"
             comment: "WARNING! Cannot be undone!!"
-            comment: "If yes, enter the period numbers separated by spaces. If no, leave blank and click Continue."
+            comment: "If yes, enter the period numbers separated by spaces."
+            comment: "If no, leave blank and click Continue."
             text: "to_exclude", ""
         endPause: "Continue", 1
 
