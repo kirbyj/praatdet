@@ -1,4 +1,4 @@
-## howard.praat: compute OQ for each period based on Howard's method 
+## howard.praat: compute Oq for each period based on Howard's method (Howard, 1995)
 
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
