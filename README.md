@@ -9,7 +9,7 @@ This set of scripts was originally inspired by my attempts to use the [**peakdet
 
 ## Warning!
 
-I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and because I wanted to have a better understanding of the issues involved; I find that implementing things myself can be helpful in this regard.
+I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and in order to gain a better appreciation for the issues involved.
 
 
 ## Comments, suggestions, etc.
