@@ -71,6 +71,14 @@ procedure getoq: .manualCheck
     Rename... 'name$'
     name$ = selected$ ("Sound", 1)
 
+    ## Create standarized version of file name for plotting purposes
+    @splitstring: name$, separator$
+    plotName$ = ""
+    for i from 1 to (splitstring.strLen - 1)
+    	plotName$ = plotName$ + splitstring.array$[i] + "-"
+    endfor
+    plotName$ = plotName$ + splitstring.array$[splitstring.strLen]
+   
     ## Filter
     Copy: "'name$'_filtered"
     Filter (pass Hann band)... passFrequency 0 smoothHz
@@ -135,7 +143,7 @@ procedure getoq: .manualCheck
         #####################
        
         if .manualCheck <> 0
-            @plotoq
+            @plotoq: plotName$
 
             beginPause: "Manual check options"
                 comment: "Do you want to manually add/delete any points? (1=yes)"

@@ -5,7 +5,7 @@
 
 ## Note that if you see periods plotted starting at 0, something is wrong
 
-procedure plotoq
+procedure plotoq: .plotName$
 
     Erase all
     
@@ -28,7 +28,7 @@ procedure plotoq
     Marks bottom every: 1, 5, "yes", "yes", "no"
     Text left: "yes", "OQ"
     Text bottom: "yes", "period"
-    Text top: "yes", "'plotName$'"
+    Text top: "no", "'.plotName$'"
 
     # border
     Black

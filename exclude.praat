@@ -9,7 +9,7 @@ procedure exclude
 	while .excludePeriods == 1
 
         ## Plot current OQ values
-        @plotoq
+        @plotoq: plotName$
 
         ## Ask if the user wants to exclude periods
         beginPause: "Exclude periods"

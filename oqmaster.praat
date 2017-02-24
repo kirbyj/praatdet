@@ -82,13 +82,6 @@ for i from 1 to splitstring.strLen
   header$ = "'header$',var'i'"
 endfor
 
-## Create standarized version of file name for plotting purposes
-plotName$ = ""
-for i from 1 to (splitstring.strLen - 1)
-  plotName$ = plotName$ + splitstring.array$[i] + "-"
-endfor
-plotName$ = plotName$ + splitstring.array$[splitstring.strLen]
-
 ## Create output file, overwriting if present
 writeFileLine: "'directory$''outfile$'", "'header$',label,method,period,start,end,f0,Oq"
 
@@ -99,7 +92,7 @@ for x from startFile to number_of_files
     current_file$ = Get string... x
     Read from file... 'directory$''current_file$'
     filename$ = selected$("Sound")
-
+    
     ## default: process entire file
     select Sound 'filename$'
     start_time = Get start time
