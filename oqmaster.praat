@@ -76,10 +76,18 @@ header$ = "filename"
 select Strings list
 ## NB: assumes all filenames have same structure, so any file will do
 sampleFileName$ = Get string... 1
+sampleFileName$ = sampleFileName$ - extension$
 @splitstring: sampleFileName$, separator$
 for i from 1 to splitstring.strLen
   header$ = "'header$',var'i'"
 endfor
+
+## Create standarized version of file name for plotting purposes
+plotName$ = ""
+for i from 1 to (splitstring.strLen - 1)
+  plotName$ = plotName$ + splitstring.array$[i] + "-"
+endfor
+plotName$ = plotName$ + splitstring.array$[splitstring.strLen]
 
 ## Create output file, overwriting if present
 writeFileLine: "'directory$''outfile$'", "'header$',label,method,period,start,end,f0,Oq"

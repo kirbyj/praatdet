@@ -1,4 +1,4 @@
-## plotoq.praat: plot Oq by period for DECOM and Howard methods
+## plotoq.praat: plot Oq by period for dEGG and Howard methods
 
 ## James Kirby <j.kirby@ed.ac.uk>
 ## 4 Jan 2017
@@ -28,6 +28,7 @@ procedure plotoq
     Marks bottom every: 1, 5, "yes", "yes", "no"
     Text left: "yes", "OQ"
     Text bottom: "yes", "period"
+    Text top: "yes", "'plotName$'"
 
     # border
     Black
@@ -36,7 +37,7 @@ procedure plotoq
     # legend
     10
     Red
-    Text: (nb_periods/10), "Left", 0.125, "Half", "+  DEGG" 
+    Text: (nb_periods/10), "Left", 0.125, "Half", "+  dEGG" 
 
     Blue
     Text: nb_periods - (nb_periods/10), "Right", 0.125, "Half", "+  Howard" 
