@@ -27,7 +27,7 @@ Once again we can immediately see that there is a similar problem to the previou
 
 ![](images/pp2.png)
 
-The Oq plots for the remaining files look OK. Note the multiple opening peaks in the above example.
+The Oq plots for the remaining files look OK. Note the (possible) multiple opening peaks in the above example.
 
 <a name="example2"></a>
 ## Example 2: processing a file
@@ -38,7 +38,7 @@ Once again, the first file to be processed is ```dhâlem_iso_1_mis.wav```. The O
 
 ![](images/scatter3a.png)
 
-Didn't we already fix this problem? If we insepect the PointProcess object, we see that the problem is the point we removed in [Example 1](#example1) above:
+Didn't we already fix this problem? If we inspect the PointProcess object, we see that the problem is the point we removed in [Example 1](#example1) above:
 
 ![](images/pp3.png)
 
@@ -58,12 +58,12 @@ This has the advantage of retaining this period in the output, but setting its v
 
 ![](images/scatter3c.png)
 
-In the next example, we see that Praat has failed to detect an opening peak.
+In the next file, we see that Praat has failed to detect an opening peak.
 
 ![](images/scatter4a.png)
 
 ![](images/pp5.png)
 
-However, simply adding this does not fix the issue; the first peak detected is an opening peak and must be removed. 
+However, simply adding this does not fix the issue; the first peak detected in this file "counts" as an opening peak and must therefore be removed. 
 
-If you scroll along you will see a number of examples of multiple opening and closing peaks in this signal. **praatdet** simply selects the most extreme (positive or negative) peak. As discussed extensively elsewhere, this may not be appropriate, and you may wish to remove periods containing such multiple peaks.
+If you scroll along you will see a number of examples of multiple opening and closing peaks in this signal. **praatdet** simply selects the most extreme (positive or negative) peak. As discussed extensively elsewhere, this may not be appropriate, and may wish to remove periods containing such multiple peaks.

@@ -108,7 +108,7 @@ Columns 2-5 contain the delimited information contained in the filename. In this
 <a name="peakdet"></a>
 ### Peak detection
 
-Peak detection proceeds in three strages:
+Peak detection proceeds in three stages:
 
 1. First, take the derivative and use this to find closing peaks:
 
@@ -153,7 +153,7 @@ Both the Lx and dEGG signals are smoothed using the same function with the same 
 
 Howard's method (encapsulated in the file ```howard.praat```) determines the glottal opening instant by means of a thresholding method.
 
-1. First we delimit the period of interest, for which we use the dEGG signal:
+1. First we delimit the period of interest, found using the dEGG closing peaks:
 
         select PointProcess 'name$'_degg_both
         .period_start = Get time from index... .i
@@ -197,7 +197,7 @@ Howard's method (encapsulated in the file ```howard.praat```) determines the glo
 
 - Unlike [peakdet](http://voiceresearch.free.fr/egg/), **praatdet** has nothing intelligent to say about multiple peaks.
 
-- I have tried to encapsulate different components of the script as functions (procedures). Praat does not really have functions, so this is kind of a mess. Note that local variables (e.g. ```.formula$```) are globally available. (I know.)
+- I have tried to encapsulate different components of the script as functions (procedures). Praat does not really have functions, so this is kind of a mess. Note that local variables (e.g. ```.formula$```) are globally available.
 
 ## References
  
