@@ -66,4 +66,4 @@ In the next file, we see that Praat has failed to detect an opening peak.
 
 However, simply adding this does not fix the issue; the first peak detected in this file "counts" as an opening peak and must therefore be removed. 
 
-If you scroll along you will see a number of examples of multiple opening and closing peaks in this signal. **praatdet** simply selects the most extreme (positive or negative) peak. As discussed extensively elsewhere, this may not be appropriate, and may wish to remove periods containing such multiple peaks.
+If you scroll along you will see a number of examples of multiple opening and closing peaks in this signal. **praatdet** simply selects the most extreme (positive or negative) peak. As discussed extensively elsewhere, this may not be appropriate, and you may wish to remove periods containing such multiple peaks.
