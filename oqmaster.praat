@@ -1,7 +1,7 @@
 ## oqmaster.praat: wrapper script to get Oq values for multiple files in a single directory
 #
 ## James Kirby <j.kirby@ed.ac.uk>
-## 23 February 2017
+## last update: 17 March 2017
 
 ## If something goes wrong, you can stop the script and pick up where you 
 ## left off, by noting the last file in the Strings list that was correctly 
@@ -13,6 +13,7 @@
 #########################
 
 ## - directory: path to EGG files
+## - textgrid: path to TextGrids, if applicable (default: same as directory$)
 ## - outfile: name of output file (saved in directory$)
 ## - extension: file extension for EGG files (.wav, .egg...)
 ## - eggChan: channel number of EGG signal
@@ -30,6 +31,8 @@
 form File info
     comment Full path to EGG files 
     text directory /Users/jkirby/Documents/Projects/egg/praatdet/examples/
+    comment Full path to TextGrids
+    text textgrids /Users/jkirby/Documents/Projects/egg/praatdet/examples/
     comment Name of output file (written to same path as above)
     word outfile egg_out.txt
     comment Extension for audio file (.wav, .egg, etc.)
@@ -101,7 +104,7 @@ for x from startFile to number_of_files
     ## ...but if user has provided an interval label or number, use that instead
     if intervalLabel$ <> "" or intervalNum <> 0
         ## use TextGrid to delimit, if it exists/is readable
-        textgrid$ = "'directory$''filename$'.TextGrid"
+        textgrid$ = "'textgrids$''filename$'.TextGrid"
         if fileReadable (textgrid$)
             Read from file... 'textgrid$'
 
@@ -131,7 +134,7 @@ for x from startFile to number_of_files
 			## fail semi-gracefully
             beginPause: "No such file"
                 comment: "File <'filename$'.TextGrid> does not exist in directory"
-                comment: "'directory$'"
+                comment: "'textgrid$'"
                 comment: "Using whole file as region of interest."
             endPause: "Continue", 1
         endif
