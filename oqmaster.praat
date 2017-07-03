@@ -65,6 +65,8 @@ beginPause("Parameters")
     integer ("smoothHz", 20)
     comment ("Manually edit points and periods?")
     boolean ("manualCheck", 1)
+    comment ("Invert signal (if you recorded w/a Glottal Ent EGG)")
+    boolean ("invertSignal", 0)
 endPause("Continue", 1)
 
 ## including getoq.praat includes everything else
@@ -95,6 +97,11 @@ for x from startFile to number_of_files
     current_file$ = Get string... x
     Read from file... 'directory$''current_file$'
     filename$ = selected$("Sound")
+
+    ## invert signal if necessary
+    if invertSignal
+        Formula... -self
+    endif
     
     ## default: process entire file
     select Sound 'filename$'
