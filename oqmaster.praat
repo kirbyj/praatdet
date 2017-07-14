@@ -108,43 +108,44 @@ for x from startFile to number_of_files
     start_time = Get start time
     end_time = Get end time
  
-    ## ...but if user has provided an interval label or number, use that instead
-    if intervalLabel$ <> "" or intervalNum <> 0
-        ## use TextGrid to delimit, if it exists/is readable
-        textgrid$ = "'textgrids$''filename$'.TextGrid"
-        if fileReadable (textgrid$)
-            Read from file... 'textgrid$'
+    ## ...but if there is a TextGrid, try to use that instead
+    textgrid$ = "'textgrids$''filename$'.TextGrid"
+    if fileReadable (textgrid$)
+        Read from file... 'textgrid$'
 
-			## first try to use intervalLabel, if provided
-			if intervalLabel$ <> ""
-            	## find start and end of interval of interest
-            	number_of_intervals = Get number of intervals... intervalTier
-				for y from 1 to number_of_intervals
-					select TextGrid 'filename$'
-					tmp$ = Get label of interval... intervalTier y
-					if tmp$ == intervalLabel$
-						start_time = Get start time of interval... intervalTier y
-						end_time = Get end time of interval... intervalTier y
-					endif
-				endfor
+		## first try to use intervalLabel, if provided
+		if intervalLabel$ <> ""
+        	## find start and end of interval of interest
+        	number_of_intervals = Get number of intervals... intervalTier
+			for y from 1 to number_of_intervals
+				select TextGrid 'filename$'
+				tmp$ = Get label of interval... intervalTier y
+				if tmp$ == intervalLabel$
+					start_time = Get start time of interval... intervalTier y
+					end_time = Get end time of interval... intervalTier y
+				endif
+			endfor
 
-			## if intervalNum is given, use that instead
-			elsif intervalNum <> 0
-            	start_time = Get start time of interval... intervalTier intervalNum
-            	end_time = Get end time of interval... intervalTier intervalNum
-                ## overwrite intervalLabel$ with something more useful
-                intervalLabel$ = Get label of interval... intervalTier intervalNum
-			endif
+		## if intervalNum is given, use that instead
+		elsif intervalNum <> 0
+        	start_time = Get start time of interval... intervalTier intervalNum
+        	end_time = Get end time of interval... intervalTier intervalNum
+            ## overwrite intervalLabel$ with something more useful
+            intervalLabel$ = Get label of interval... intervalTier intervalNum
 
+        ## if nothing, just use the label of the first tier
         else
-        	## if there is no TextGrid, even though user provided an interval label/number,
-			## fail semi-gracefully
-            beginPause: "No such file"
-                comment: "File <'filename$'.TextGrid> does not exist in directory"
-                comment: "'textgrid$'"
-                comment: "Using whole file as region of interest."
-            endPause: "Continue", 1
-        endif
+            intervalLabel$ = Get label of interval... intervalTier 1
+		endif
+
+    else
+    	## if there is no TextGrid, even though user provided an interval label/number,
+		## fail semi-gracefully
+        beginPause: "No such file"
+            comment: "File <'filename$'.TextGrid> does not exist in directory"
+            comment: "'textgrid$'"
+            comment: "Using whole file as region of interest."
+        endPause: "Continue", 1
     endif
 
     ## call main getoq function

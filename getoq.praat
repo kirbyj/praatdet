@@ -179,7 +179,7 @@ procedure getoq: .manualCheck
             endif
 
         else
-            ## Not doinhg manual check; get me out of this loop!
+            ## Not doing manual check; get me out of this loop!
             .findOQ = 0
         endif 
 

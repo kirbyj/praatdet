@@ -11,10 +11,7 @@
 
 procedure peakdet 
 
-    # select original (filtered, UNsmoothed) signal
-    #select Sound 'name$'_filtered_band
-    
-    # select original (filtered, smoothed) signal
+    # select (filtered, smoothed) Lx signal
     select Sound 'name$'_fsmooth
 
     # take first derivative of waveform

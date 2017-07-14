@@ -49,8 +49,9 @@ procedure howard
         # open period starts sometime after the peak 
         .local_max = Get time of maximum... 0 0 Sinc70
         .first_zero = Get time of minimum... .local_max 0 Sinc70
-        .zero_samp = Get sample number from time... .first_zero
+
         # back up one sample for maxmimum explicitness
+        .zero_samp = Get sample number from time... .first_zero
         .open_start = Get time from sample number... .zero_samp-1
 
         ## Optional: draw each period, with a dotted line representing the 
