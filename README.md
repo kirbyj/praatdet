@@ -16,6 +16,14 @@ I make no claims that the implementations here are correct, or that they will gi
 
 Please send any comments, etc. to [j.kirby@ed.ac.uk](j.kirby@ed.ac.uk).
 
+
+## Citing praatdet
+
+Praatdet can be cited as follows:
+
+Kirby, James. 2017. Praatdet: Praat-based tools for EGG analysis (v0.1.1). [https://doi.org/10.5281/zenodo.1117189](https://doi.org/10.5281/zenodo.1117189).
+
+
 ## General structure
 
 **praatdet** assumes that the user has a number of EGG recordings for which s/he would like to obtain Oq estimates. These recordings may either be part of a stereo file (with e.g. a microphone recording on the other channel) or could be mono EGG files. **praatdet** determines opening and closing peaks using the dEGG signal, allows the user to add and delete points, permits the user to disregard particular periods (e.g., due to the presence of multiple opening peaks), and writes the output to a comma-delimited text file. Information about the peaks themselves is also saved in the form of a Praat ```PointProcess``` file.
