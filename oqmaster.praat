@@ -45,7 +45,7 @@ form File info
     integer intervalTier 3
     comment Label of interval of interest (blank for none/all)
     word intervalLabel v
-    comment Number of interval interest (0 for none/all)
+    comment Number of interval of interest (0 for none/all)
     integer intervalNum 0
     comment Separator (-, _ ...) when parsing token names
     word separator _
@@ -131,7 +131,8 @@ for x from startFile to number_of_files
         	start_time = Get start time of interval... intervalTier intervalNum
         	end_time = Get end time of interval... intervalTier intervalNum
             ## overwrite intervalLabel$ with something more useful
-            intervalLabel$ = Get label of interval... intervalTier intervalNum
+            ## problem: doing this means that we will not enter this condition next time
+            #intervalLabel$ = Get label of interval... intervalTier intervalNum
 
         ## if nothing, just use the label of the first tier
         else

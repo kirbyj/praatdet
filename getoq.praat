@@ -155,6 +155,12 @@ procedure getoq: .manualCheck
             ################################
             
             if .manualCheck == 1
+                ## Remove existing Matrix objects since new ones will be created
+                select Matrix 'name$'_degg
+                plus Matrix 'name$'_howard
+                Remove
+
+                ## Now add/remove points
                 select PointProcess 'name$'_degg_both
                 plus Sound 'name$'_degg
                 View & Edit
