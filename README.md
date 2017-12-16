@@ -34,7 +34,7 @@ From the user's perspective, the most important script is ```oqmaster.praat```. 
 ### Requirements
 - **praatdet** assumes your filenames contain useful metadata about the token (e.g. speaker code, gender, token number, etc.). These will be parsed based on a user-defined delimiter and included in the [output file](#output) as generic columns named *var1, var2...*.
 
-- It is assumed that tasks such as normalization will happen in a different environemt (e.g. R). **praatdet** is narrowly focused on annotating/editing a pulse train object, and extracting Oq values based on it.
+- It is assumed that tasks such as normalization will happen in a different environment (e.g. R). **praatdet** is narrowly focused on annotating/editing a pulse train object, and extracting Oq values based on it.
 
 - **praatdet** requires Praat 6 or later. It has been tested with 6.0.24 on both macOS 10.12.3 and Windows 7. Find the latest version at [http://www.praat.org](http://www.praat.org).
 
