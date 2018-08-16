@@ -5,7 +5,7 @@ A suite of Praat scripts to determine the open quotient (Oq) and fundamental fre
 
 ## Background
 
-This set of scripts was originally inspired by my attempts to use the [**peakdet**](http://voiceresearch.free.fr/egg/) tools developed by Nathalie Henrich, Cédric Grendrot, and Alexis Michaud. In the course of modifying their code to batch-process large numbers of files, I found myself wishing for a number of other modifications to the general [**peakdet**](http://voiceresearch.free.fr/egg/) workflow. Eventually I decided that the easiest solution would be to try and implement something similar myself. I chose to work in Praat primarily because it provides a relatively intuitive and easy-to-use graphical interface for editing pulse trains. Praat comes with its own set of problems and I in no way claim it is superior to Matlab for this purpose; however, I have learned a great deal about working with EGG signals in the process of developing these tools.
+This set of scripts was originally inspired by my attempts to use the [**peakdet**](http://voiceresearch.free.fr/egg/) tools developed by Nathalie Henrich, Cédric Grendrot, and Alexis Michaud. In the course of modifying their code to batch-process large numbers of files, I found myself wishing for a number of other modifications to the general [**peakdet**](http://voiceresearch.free.fr/egg/) workflow. Eventually I decided that the easiest solution would be try and implement something similar myself. I chose to work in Praat primarily because it provides a relatively intuitive and easy-to-use graphical interface for editing pulse trains. Praat comes with its own set of problems and I in no way claim it is superior to Matlab for this purpose; however, I have learned a great deal about working with EGG signals in the process of developing these tools.
 
 ## Warning!
 
@@ -37,7 +37,7 @@ The physiological correlates of peaks in the dEGG signal were studied extensivel
 
 The user may or may not have accompying TextGrids where regions of interest have been indicated. In the interest of file management simplicity, **praatdet** keeps just one (potentially user-corrected) PointProcess per file, but permits the user to only annotate/display Oq values for a particular region. For example, you may have a file containing a single word, segmented into onset, nucleus, and coda. In the first instance you may just want to determine Oq for the nucleus, but perhaps later you decide you are interested in the nasal coda as well. Since a single PointProcess object is associated with each EGG file, you can edit the detected peaks for the coda region while retaining your previous edits of the nucleus. For more details, see the [EXAMPLES](EXAMPLES.md) document.
 
-From the user's perspective, the most important script is ```oqmaster.praat```. All other scripts simply encapsulate different aspects of the workflow.
+From the user's perspective, the most important script is ```praatdet.praat```. All other scripts simply encapsulate different aspects of the workflow.
 
 ### Requirements
 - **praatdet** assumes your filenames contain useful metadata about the token (e.g. speaker code, gender, token number, etc.). These will be parsed based on a user-defined delimiter and included in the [output file](#output) as generic columns named *var1, var2...*.
@@ -48,7 +48,7 @@ From the user's perspective, the most important script is ```oqmaster.praat```. 
 
 ## Usage
 
-1. Run the ```oqmaster.praat``` script from within Praat. This will bring up a dialog window prompting you for 
+1. Run the ```praatdet.praat``` script from within Praat. This will bring up a dialog window prompting you for 
 
 	- the location of your EGG files
 	- the name of your [output file](#output)
@@ -130,6 +130,8 @@ Peak detection proceeds in three stages:
 		To PointProcess (periodic, peaks)... min max No Yes
 
 	For more details of Praat's ```To PointProcess (periodic, peaks)....``` algorithm, see [here](http://www.fon.hum.uva.nl/praat/manual/Sound__To_PointProcess__periodic__peaks____.html).
+
+   In order to ensure that the first peak is always a closing peak, the times of the first points in each PointProcess are compared, and the first point of the ```opening``` PointProcess is deleted if it occurs before the first point in the ```closing``` PointProcess.
  
 3. These are then combined into a single PointProcess object:
 
@@ -196,6 +198,10 @@ Howard's method (encapsulated in the file ```howard.praat```) determines the glo
         .zero_samp = Get sample number from time... .first_zero
         .open_start = Get time from sample number... .zero_samp-1
  
+## Calling from the command line
+
+If you would like to script **praatdet** from the shell, use ```shelldet.praat```, which collapses both argument windows into a single window. (If all arguments are included in a single form, which is what is needed for Praat to process all command line arguments when called from the shell, the resulting form window will be too big for most screens (since it can't be dynamically resized as far as I can tell).
+
 
 ## Known issues
 
