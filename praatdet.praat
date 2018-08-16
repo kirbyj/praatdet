@@ -97,7 +97,6 @@ for x from startFile to number_of_files
     current_file$ = Get string... x
     Read from file... 'directory$''current_file$'
     filename$ = selected$("Sound")
-
     ## invert signal if necessary
     if invertSignal
         Formula... -self
@@ -109,7 +108,8 @@ for x from startFile to number_of_files
     end_time = Get end time
  
     ## ...but if there is a TextGrid, try to use that instead
-    textgrid$ = "'textgrids$''filename$'.TextGrid"
+	gridname$ = current_file$ - extension$
+    textgrid$ = "'textgrids$''gridname$'.TextGrid"
     if fileReadable (textgrid$)
         Read from file... 'textgrid$'
 
@@ -118,7 +118,7 @@ for x from startFile to number_of_files
         	## find start and end of interval of interest
         	number_of_intervals = Get number of intervals... intervalTier
 			for y from 1 to number_of_intervals
-				select TextGrid 'filename$'
+				select TextGrid 'gridname$'
 				tmp$ = Get label of interval... intervalTier y
 				if tmp$ == intervalLabel$
 					start_time = Get start time of interval... intervalTier y
@@ -143,7 +143,7 @@ for x from startFile to number_of_files
     	## if there is no TextGrid, even though user provided an interval label/number,
 		## fail semi-gracefully
         beginPause: "No such file"
-            comment: "File <'filename$'.TextGrid> does not exist in directory"
+            comment: "File <'gridname$'.TextGrid> does not exist in directory"
             comment: "'textgrid$'"
             comment: "Using whole file as region of interest."
         endPause: "Continue", 1
@@ -155,6 +155,7 @@ for x from startFile to number_of_files
 
     select all
     minus Strings list
+
     Remove
 
     clearinfo
