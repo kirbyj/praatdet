@@ -30,21 +30,23 @@ procedure peakdet
 		To PointProcess (periodic, peaks)... minF0 maxF0 Yes No
 		Rename... 'name$'_degg_closing
 
-		# what is the time of the first point?
-		first_closing_point = Get time from index... 1
-
+		# what is the time of the first closing point?
+		closing_point_index = Get high index... start_time
+		closing_point_time = Get time from index... closing_point_index
+	
 		# get opening peaks
 		select Sound 'name$'_degg
 		To PointProcess (periodic, peaks)... minF0 maxF0 No Yes
 		Rename... 'name$'_degg_opening
 
-		# what is the time of the first point?
-		first_opening_point = Get time from index... 1
+		# what is the time of the first opening point?
+		opening_point_index = Get high index... start_time
+		opening_point_time = Get time from index... opening_point_index
 
 		# before combining, make sure that the first peak is always a closing peak
 		# this way we always measure closing->closing
-		if first_closing_point > first_opening_point
-			Remove point: 1
+		if closing_point_time > opening_point_time
+			Remove point: opening_point_index
 		endif
 		
 		# add them together 
