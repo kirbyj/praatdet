@@ -64,6 +64,8 @@ form File info
     integer smoothHz 20
     comment Manually edit points and periods?
     boolean manualCheck 1
+    comment Use existing PointProcess files, if available?
+    boolean useExistingPP 0
     comment Invert signal (if your EGG has closed=down for some reason)
     boolean invertSignal 0
 endform

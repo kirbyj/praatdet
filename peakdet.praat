@@ -22,9 +22,11 @@ procedure peakdet
     Formula... 'smooth.formula$'
     
    ## If there is an existing PointProcess file, use that
-    existing_pprocess$ = "'directory$''name$'_degg_both.PointProcess"
-    if fileReadable(existing_pprocess$)
-        Read from file... 'existing_pprocess$'
+	if useExistingPP
+    	existing_pprocess$ = "'directory$''name$'_degg_both.PointProcess"
+    	if fileReadable(existing_pprocess$)
+        	Read from file... 'existing_pprocess$'
+		endif
     else
 		# get closing peaks
 		To PointProcess (periodic, peaks)... minF0 maxF0 Yes No
