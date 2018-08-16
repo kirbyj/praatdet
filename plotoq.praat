@@ -34,6 +34,14 @@ procedure plotoq: .plotName$
     Black
     Draw inner box
 
+    # draw grid
+    Dotted line
+    i = 5
+    while i < nb_periods
+        Draw line... i 0 i 1
+        i = i + 5
+    endwhile
+
     # legend
     10
     Red
