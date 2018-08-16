@@ -7,7 +7,7 @@
 procedure writelns
    
     ## Parse filename into array
-    @splitstring: name$, separator$
+    @splitstring: gridname$, separator$
 
     ## Turn this into a comma-separated list
     lingVars$ = ""
@@ -23,7 +23,7 @@ procedure writelns
     
     ## get interval label if we don't have it
     if intervalNum <> 0
-        select TextGrid 'name$'
+        select TextGrid 'gridname$'
         printIntervalLabel$ = Get label of interval... intervalTier intervalNum
     else
         printIntervalLabel$ = intervalLabel$
