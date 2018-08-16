@@ -1,4 +1,4 @@
-## oqmaster.praat: wrapper script to get Oq values for multiple files in a single directory
+## praatdet.praat: wrapper script to get Oq values for multiple files in a single directory
 #
 ## James Kirby <j.kirby@ed.ac.uk>
 ## last update: 17 March 2017
@@ -30,9 +30,9 @@
 
 form File info
     comment Full path to EGG files 
-    text directory /Users/jkirby/Documents/Projects/egg/praatdet/examples/
+    text directory /Users/jkirby/Projects/egg/praatdet/examples/
     comment Full path to TextGrids
-    text textgrids /Users/jkirby/Documents/Projects/egg/praatdet/examples/
+    text textgrids /Users/jkirby/Projects/egg/praatdet/examples/
     comment Name of output file (written to same path as above)
     word outfile egg_out.txt
     comment Extension for audio file (.wav, .egg, etc.)
@@ -52,7 +52,7 @@ form File info
 endform
 
 beginPause("Parameters")
-    comment ("Minimum and maximum d0 thresholds")
+    comment ("Minimum and maximum f0 thresholds")
     integer ("minF0", 75)
     integer ("maxF0", 600)
     comment ("k: Smoothing window size parameter (points on each side)")
@@ -60,12 +60,12 @@ beginPause("Parameters")
     comment ("Threshold for Howard's method")
     real    ("threshold", 3/7) 
     comment ("Filter frequency cutoff")
-    integer ("passFrequency", 75)
+    integer ("passFrequency", 40)
     comment ("Filter cutoff smoothing")
     integer ("smoothHz", 20)
     comment ("Manually edit points and periods?")
     boolean ("manualCheck", 1)
-    comment ("Invert signal (if you recorded w/a Glottal Ent EGG)")
+    comment ("Invert signal (if your EGG has closed=down for some reason)")
     boolean ("invertSignal", 0)
 endPause("Continue", 1)
 
