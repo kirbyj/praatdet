@@ -1,0 +1,5 @@
+0.2 (16-08-2018)
+
+ - renamed oqmaster.praat to praatdet.praat
+ - added shelldet.praat for calling from command line
+ - added code to peakdet.paat to ensure first peak is a closing peak
