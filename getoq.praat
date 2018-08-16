@@ -19,7 +19,7 @@
 ## the PointProcess should therefore be CLOSING (i.e. positive) peaks. 
 
 ## Note that it is not enough to simply remove the point of uncertain dEGG 
-## opening peaks, because the algorithm expects opening-closing peak pairs. 
+## opening peaks, because the algorithm expects closing-opening peak pairs. 
 ## Therefore, there is a separate step where whole periods are removed.
 
 ## 2. At present, nothing intelligent is done about multiple peaks: they
