@@ -87,7 +87,7 @@ From the user's perspective, the most important script is ```praatdet.praat```. 
 	
 4. The Oq estimates will now be re-drawn in the ```Picture``` window, and you will have the option to repeat step 3. If the estimates still look incorrect or differ wildly from one another, you may have missed a point or points; repeat step 3. If the estimates look OK, enter 0 as the value for ```.manualCheck``` and click ```Continue```.
 
-5. You will now have the opportunity to remove individual *periods* (not points) from consideration, a la [**peakdet**](http://voiceresearch.free.fr/egg/). You may wish to do this if, for example, you decide that the values at the edges of the utterance are invalid, or if you noticed periods containing double peaks in steps 3-4. I recommend inserting points (or leaving the ones that Praat finds) for double peaks, and then removing the entire period at this step. The advantage of this workflow is that the [output file](#output) will record the time and location of this period, but will not record Oq values for it. This is a simple way of indicating the existence of a double peak.
+5. You will now have the opportunity to remove individual *periods* (not points) from consideration, à la [**peakdet**](http://voiceresearch.free.fr/egg/). You may wish to do this if, for example, you decide that the values at the edges of the utterance are invalid, or if you noticed periods containing double peaks in steps 3-4. I recommend inserting points (or leaving the ones that Praat finds) for double peaks, and then removing the entire period at this step. The advantage of this workflow is that the [output file](#output) will record the time and location of this period, but will not record Oq values for it. This is a simple way of indicating the existence of a double peak.
 
 	To remove periods, enter the period numbers, separated by spaces, in the dialog box. The ```Picture``` display will then update to reflect your changes. Be careful; there is no 'undo' for this procedure, short of processing the file all over again! When you are finished, or if you do not wish to remove any periods, leave the dialog box blank, and click ```Continue```.
 	
@@ -98,18 +98,16 @@ For more details and examples of common issues, see the [EXAMPLES](EXAMPLES.md) 
 <a name="output"></a>
 ## Output file format
 
-The output file (named ```egg_out.txt``` by default) is a comma-delimted text file with a header row plus one row per measurement per period per file. Since at present **praatdet** only computes two Oq measures (dEGG and Howard's method), the header looks like
+The output file (named ```egg_out.txt``` by default) is a comma-delimted text file with a header row plus one row per period per file. Since at present **praatdet** only computes two Oq measures (dEGG and Howard's method), the header looks like
 
-	filename,var1,var2,var3,var4,label,method,period,start,end,f0,Oq
+	filename,var1,var2,var3,var4,label,period,start,end,egg_f0,degg_oq,howard_oq
 
 where the ```var1,var2...``` columns represent variables parsed from your filename. The remaining rows of the output file will look like
 
-	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,degg,1,0.12421257195168106,0.13106735443332038,145.88354957703206,0.7252252298951782
-	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,howard,1,0.12421257195168106,0.13106735443332038,145.88354957703206,0.6982139033791485
-	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,degg,2,0.13106735443332038,0.13806236081289922,142.959126230305,0.6938484647332952
-	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,howard,2,0.13106735443332038,0.13806236081289922,142.959126230305,0.6745684788329395
+	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,1,0.12421257195168106,0.13106735443332038,145.88354957703206,0.7252252298951782,0.6982139033791485
+	dhâlem_iso_1_mis,dhâlem,iso,1,mis,v,2,0.13106735443332038,0.13806236081289922,142.959126230305,0.6938484647332952,0.6745684788329395
 	
-Columns 2-5 contain the delimited information contained in the filename. In this example, these columns contain the word token, the context (isolation), the repetition (1), and the speaker code. The next column contains the TextGrid interval label; if the entire file was processed, this will be empty. Following this is the ```method``` (```degg``` or ```howard```, currently), the period number (starting at 1, relative to the region specified by the interval label), the start and end times of the period and the f0 (as determined from the location of the dEGG closing peaks), and the Oq (as determined by the ```method```).
+Columns 2-5 contain the delimited information contained in the filename. In this example, these columns contain the word token, the context (isolation), the repetition (1), and the speaker code. The next column contains the TextGrid interval label; if the entire file was processed, this will be empty. Following this is the period number (starting at 1, relative to the region specified by the interval label), the start and end times of the period and the f0 (as determined from the location of the dEGG closing peaks), and the Oq measurements. Other measures, such as speed quotient, could be added and appended in a similar fashion.
 
 ## Behind the scenes
 
@@ -140,6 +138,9 @@ Peak detection proceeds in three stages:
       	Union
 
 	which is then used to subsequent analysis; this is also the object that is ultimately saved.
+
+One issue with using the Praat ```PointProcess`` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks.
+
 
 <a name="smoothing"></a>
 ### Smoothing
@@ -184,7 +185,7 @@ Howard's method (encapsulated in the file ```howard.praat```) determines the glo
         for .k from 1 to .nsamp
             .si = Get value at sample number... eggChan .k
             if .si < threshold
-            ## set all values below threshold to zero
+            	## set all values below threshold to zero
                 Set value at sample number... 1 .k 0
             endif
         endfor
@@ -200,7 +201,7 @@ Howard's method (encapsulated in the file ```howard.praat```) determines the glo
  
 ## Calling from the command line
 
-If you would like to script **praatdet** from the shell, use ```shelldet.praat```, which collapses both argument windows into a single window. (If all arguments are included in a single form, which is what is needed for Praat to process all command line arguments when called from the shell, the resulting form window will be too big for most screens (since it can't be dynamically resized as far as I can tell).
+If you would like to script **praatdet** from the shell, use ```shelldet.praat```, which collapses both argument windows into a single window. (If all arguments are included in a single form, which is what is needed for Praat to process all command line arguments when called from the shell due to the [single form requirement](http://praat-users.yahoogroups.co.narkive.com/UF4twWwZ/size-of-the-form-windows-in-scipts), the resulting form window will be too big for most screens (since resizing the window is [not possible](http://praat-users.yahoogroups.co.narkive.com/UF4twWwZ/size-of-the-form-windows-in-scipts)).
 
 
 ## Known issues
@@ -211,7 +212,7 @@ If you would like to script **praatdet** from the shell, use ```shelldet.praat``
 
 - Unlike [peakdet](http://voiceresearch.free.fr/egg/), **praatdet** has nothing intelligent to say about multiple peaks.
 
-- I have tried to encapsulate different components of the script as functions (procedures). Praat does not really have functions, so this is kind of a mess. Note that local variables (e.g. ```.formula$```) are globally available.
+- I have tried to encapsulate different components of the script as functions (procedures). Praat does not have 'real' functions, so be aware that local variables (e.g. ```.formula$```) are globally available.
 
 ## References
  
@@ -222,5 +223,3 @@ Childers, D. G., Hicks, D. M., Moore, G. P., Eskenazi, L., and Lalwani, A. L. (*
 Henrich N., d'Alessandro C., Castellengo M. and Doval B.. (**2004**). "On the use of the derivative of electroglottographic signals for characterization of nonpathological voice phonation", J. Acous. Soc. Am. 115(3), 1321-1332.
 
 Michaud, A. (**2004**). “Final consonants and glottalization: new perspectives from Hanoi Vietnamese,” Phonetica 61, 119–146.
-
-
