@@ -39,7 +39,7 @@ procedure writelns
         pend = Get value in cell... i 3
         f0 = Get value in cell... i 4
         degg_oq = Get value in cell... i 5
-		myFileLine$ = myFileLine$ + name$ + "," + lingVars$ + printIntervalLabel$ + "'currPeriod','pstart','pend','f0','degg_oq'"
+		myFileLine$ = myFileLine$ + name$ + "," + lingVars$ + printIntervalLabel$ + ",'currPeriod','pstart','pend','f0','degg_oq'"
 
         ## Howard
 		select Matrix 'name$'_howard
