@@ -91,8 +91,8 @@ endfor
 
 ## Create output file, overwriting if present
 writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,egg_f0,degg_oq,howard_oq"
-## If we wanted to allow the selection of different/additional measures, would want to modify this so that
-## header was created dynamically
+## If we wanted to allow the user to select different/additional measures, would want to modify this 
+## so that header was built dynamically
 
 ## loop through files in directory$
 number_of_files = Get number of strings
