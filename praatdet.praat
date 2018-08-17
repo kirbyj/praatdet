@@ -90,7 +90,9 @@ for i from 1 to splitstring.strLen
 endfor
 
 ## Create output file, overwriting if present
-writeFileLine: "'directory$''outfile$'", "'header$',label,method,period,start,end,f0,Oq"
+writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,eggF0,DEGG_Oq,Howard_Oq"
+## If we wanted to allow the selection of different measures, would want to modify this so that
+## header was created dynamically
 
 ## loop through files in directory$
 number_of_files = Get number of strings
