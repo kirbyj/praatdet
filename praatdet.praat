@@ -90,7 +90,7 @@ for i from 1 to splitstring.strLen
 endfor
 
 ## Create output file, overwriting if present
-writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,eggF0,DEGG_Oq,Howard_Oq"
+writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,egg_f0,degg_oq,howard_oq"
 ## If we wanted to allow the selection of different measures, would want to modify this so that
 ## header was created dynamically
 
