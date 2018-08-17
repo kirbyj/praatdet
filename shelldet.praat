@@ -1,10 +1,8 @@
-## shelldet.praat: wrapper script to get Oq values for multiple files in a single directory
+## shelldet.praat: wrapper script to get Oq values for multiple files in a single directory from command line
 #
 ## James Kirby <j.kirby@ed.ac.uk>
-## last update: 16 August 2018
-##
-## Designed to be called be a shell script with command line arguments
-##
+## last update: 17 August 2018
+
 ## If something goes wrong, you can stop the script and pick up where you 
 ## left off, by noting the last file in the Strings list that was correctly 
 ## processed. However be sure to rename your output file, or rename it 
@@ -29,13 +27,12 @@
 ##   k = 0 is same as no smoothing.
 ##   k = 2 > 5-point window; k = 3 > 7-point window; etc.
 ## - threshold: Howard's method threshold (default: 3/7)
-
 form File info
-    comment Full path to EGG files 
+    comment Full path to EGG files
     text directory /Users/jkirby/Projects/egg/praatdet/examples/
     comment Full path to TextGrids
-    text textgrids /Users/jkirby/Projects/egg/praatdet/examples/
-    comment Name of output file (written to same path as above)
+    text textgrids /Users/jkirby/Projects/egg/praatdet/examples/grids/
+    comment Name of output file (written to same path as EGG files)
     word outfile egg_out.txt
     comment Extension for audio file (.wav, .egg, etc.)
     word extension .wav
@@ -57,13 +54,13 @@ form File info
     comment k: Smoothing window size parameter (points on each side)
     integer k 10
     comment Threshold for Howard's method
-    real    threshold 3/7 
+    real    threshold 3/7
     comment Filter frequency cutoff
     integer passFrequency 40
     comment Filter cutoff smoothing
     integer smoothHz 20
     comment Manually edit points and periods?
-    boolean manualCheck 1
+    boolean manualCheck 0
     comment Use existing PointProcess files, if available?
     boolean useExistingPP 0
     comment Invert signal (if your EGG has closed=down for some reason)
@@ -89,7 +86,9 @@ for i from 1 to splitstring.strLen
 endfor
 
 ## Create output file, overwriting if present
-writeFileLine: "'directory$''outfile$'", "'header$',label,method,period,start,end,f0,Oq"
+writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,egg_f0,degg_oq,howard_oq"
+## If we wanted to allow the selection of different measures, would want to modify this so that
+## header was created dynamically
 
 ## loop through files in directory$
 number_of_files = Get number of strings
@@ -98,7 +97,6 @@ for x from startFile to number_of_files
     current_file$ = Get string... x
     Read from file... 'directory$''current_file$'
     filename$ = selected$("Sound")
-
     ## invert signal if necessary
     if invertSignal
         Formula... -self
@@ -110,7 +108,7 @@ for x from startFile to number_of_files
     end_time = Get end time
  
     ## ...but if there is a TextGrid, try to use that instead
-    gridname$ = current_file$ - extension$
+	gridname$ = current_file$ - extension$
     textgrid$ = "'textgrids$''gridname$'.TextGrid"
     if fileReadable (textgrid$)
         Read from file... 'textgrid$'
@@ -157,6 +155,7 @@ for x from startFile to number_of_files
 
     select all
     minus Strings list
+
     Remove
 
     clearinfo
