@@ -91,7 +91,7 @@ endfor
 
 ## Create output file, overwriting if present
 writeFileLine: "'directory$''outfile$'", "'header$',label,period,start,end,egg_f0,degg_oq,howard_oq"
-## If we wanted to allow the selection of different measures, would want to modify this so that
+## If we wanted to allow the selection of different/additional measures, would want to modify this so that
 ## header was created dynamically
 
 ## loop through files in directory$
