@@ -19,7 +19,7 @@ procedure writelns
     ## cols 2-5 of rows that have been 'discarded' are set to 0.
     ## This could potentially be handled more gracefully here, or can
     ## be dealt with at the analysis stage (e.g., by replacing 0s with 
-    ## NAs in R).
+    ## NAs in your statistical analysis software).
     
     ## get interval label if we don't have it
     if intervalNum <> 0
@@ -28,8 +28,10 @@ procedure writelns
     else
         printIntervalLabel$ = intervalLabel$
     endif
-    
+  
     for i from 1 to nb_periods-1
+		myFileLine$ = ""
+
         ## DEGG
         select Matrix 'name$'_degg
         currPeriod = Get value in cell... i 1
@@ -37,14 +39,20 @@ procedure writelns
         pend = Get value in cell... i 3
         f0 = Get value in cell... i 4
         degg_oq = Get value in cell... i 5
-        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, printIntervalLabel$, ",degg,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", degg_oq
-        ## Howard
-        select Matrix 'name$'_howard
-        howard_oq = Get value in cell... i 5
-        appendFileLine: "'directory$''outfile$'", name$, ",", lingVars$, printIntervalLabel$, ",howard,", currPeriod, ",", pstart, ",", pend, ",", f0, ",", howard_oq
-    endfor
+		myFileLine$ = myFileLine$ + name$ + "," + lingVars$ + printIntervalLabel$ + "'currPeriod','pstart','pend','f0','degg_oq'"
 
-     ## Save PointProcess object
-     select PointProcess 'name$'_degg_both
-     Save as text file... 'directory$''name$'_degg_both.PointProcess
+        ## Howard
+		select Matrix 'name$'_howard
+		howard_oq = Get value in cell... i 5
+		myFileLine$ = myFileLine$ + ",'howard_oq'"
+
+		## If you want to add other measures, just continue to append them here
+
+		## Now, write out`
+		appendFileLine: "'directory$''outfile$'", "'myFileLine$'"
+	endfor
+
+    ## Save PointProcess object
+    select PointProcess 'name$'_degg_both
+    Save as text file... 'directory$''name$'_degg_both.PointProcess
 endproc
