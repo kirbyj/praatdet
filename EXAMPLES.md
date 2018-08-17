@@ -1,5 +1,9 @@
 # Usage examples
 
+**Update August 2018**: version 0.2 of **praatdet** now always checks to ensure the first peak is a closing peak, which eliminates most of 
+these errors. Therefore you won't see the behaviour below if you run the new version on the included example files. However, I've left them here as they illustrate the kinds of things that can go wrong.
+
+
 <a name="example1"></a>
 ## Example 1: processing an interval
 
