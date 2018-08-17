@@ -185,7 +185,7 @@ Howard's method (encapsulated in the file ```howard.praat```) determines the glo
         for .k from 1 to .nsamp
             .si = Get value at sample number... eggChan .k
             if .si < threshold
-            	## set all values below threshold to zero
+            	 ## set all values below threshold to zero
                 Set value at sample number... 1 .k 0
             endif
         endfor
