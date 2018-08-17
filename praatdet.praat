@@ -32,8 +32,8 @@ form File info
     comment Full path to EGG files 
     text directory /Users/jkirby/Projects/egg/praatdet/examples/
     comment Full path to TextGrids
-    text textgrids /Users/jkirby/Projects/egg/praatdet/examples/
-    comment Name of output file (written to same path as above)
+    text textgrids /Users/jkirby/Projects/egg/praatdet/examples/grids/
+    comment Name of output file (written to same path as EGG files)
     word outfile egg_out.txt
     comment Extension for audio file (.wav, .egg, etc.)
     word extension .wav
