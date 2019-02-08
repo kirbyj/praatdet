@@ -1,0 +1,1 @@
+- Currently, the "leave blank for all" design does not work from the shell. Moreover, it's overall a poor design: if you want to look at interval labeled "ons" and interval labeled "nuc" you have to run praatdet twice. 
