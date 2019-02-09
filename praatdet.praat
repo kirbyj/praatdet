@@ -105,8 +105,10 @@ for x from startFile to number_of_files
     if invertSignal
         Formula... -self
     endif
-    
-    ## default: process entire file
+   
+    ## default: process entire file if a region of interest is found, 
+    ## or if there is no associated TextGrid
+    found_region = 0 
     select Sound 'filename$'
     start_time = Get start time
     end_time = Get end time
@@ -125,6 +127,7 @@ for x from startFile to number_of_files
 				select TextGrid 'gridname$'
 				tmp$ = Get label of interval... intervalTier y
 				if tmp$ == intervalLabel$
+					found_region = 1
 					start_time = Get start time of interval... intervalTier y
 					end_time = Get end time of interval... intervalTier y
 				endif
@@ -134,28 +137,26 @@ for x from startFile to number_of_files
 		elsif intervalNum <> 0
         	start_time = Get start time of interval... intervalTier intervalNum
         	end_time = Get end time of interval... intervalTier intervalNum
+			found_region = 1
             ## overwrite intervalLabel$ with something more useful
             ## problem: doing this means that we will not enter this condition next time
             #intervalLabel$ = Get label of interval... intervalTier intervalNum
 
-        ## if nothing, just use the label of the first tier
-        else
-            intervalLabel$ = Get label of interval... intervalTier 1
-		endif
-
     else
-    	## if there is no TextGrid, even though user provided an interval label/number,
-		## fail semi-gracefully
+    	## if there is no TextGrid, process the whole file
         beginPause: "No such file"
             comment: "File <'gridname$'.TextGrid> does not exist in directory"
             comment: "'textgrid$'"
             comment: "Using whole file as region of interest."
         endPause: "Continue", 1
+		found_region = 1
     endif
 
-    ## call main getoq function
-    select Sound 'filename$'
-    @getoq: manualCheck
+    ## if a region of interest has been identified, call main getoq function
+	if found_region == 1
+    	select Sound 'filename$'
+    	@getoq: manualCheck
+	endif
 
     select all
     minus Strings list
