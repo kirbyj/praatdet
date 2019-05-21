@@ -139,7 +139,7 @@ Peak detection proceeds in three stages:
 
 	which is then used to subsequent analysis; this is also the object that is ultimately saved.
 
-One issue with using the Praat ```PointProcess`` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks.
+One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks.
 
 
 <a name="smoothing"></a>
