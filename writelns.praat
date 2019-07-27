@@ -28,31 +28,40 @@ procedure writelns
     else
         printIntervalLabel$ = intervalLabel$
     endif
-  
-    for i from 1 to nb_periods-1
-		myFileLine$ = ""
 
-        ## DEGG
-        select Matrix 'name$'_degg
-        currPeriod = Get value in cell... i 1
-        pstart = Get value in cell... i 2
-        pend = Get value in cell... i 3
-        f0 = Get value in cell... i 4
-        degg_oq = Get value in cell... i 5
-		myFileLine$ = myFileLine$ + name$ + "," + lingVars$ + printIntervalLabel$ + ",'currPeriod','pstart','pend','f0','degg_oq'"
+	## if you have at least one period:
+	if nb_periods > 0
+    	for i from 1 to nb_periods-1
+			myFileLine$ = ""
 
-        ## Howard
-		select Matrix 'name$'_howard
-		howard_oq = Get value in cell... i 5
-		myFileLine$ = myFileLine$ + ",'howard_oq'"
+    	    ## DEGG
+    	    select Matrix 'name$'_degg
+    	    currPeriod = Get value in cell... i 1
+    	    pstart = Get value in cell... i 2
+    	    pend = Get value in cell... i 3
+    	    f0 = Get value in cell... i 4
+    	    degg_oq = Get value in cell... i 5
+			myFileLine$ = myFileLine$ + name$ + "," + lingVars$ + printIntervalLabel$ + ",'currPeriod','pstart','pend','f0','degg_oq'"
 
-		## If you want to add other measures, just continue to append them here
+    	    ## Howard
+			select Matrix 'name$'_howard
+			howard_oq = Get value in cell... i 5
+			myFileLine$ = myFileLine$ + ",'howard_oq'"
 
-		## Now, write out`
+			## If you want to add other measures, just continue to append them here
+
+			## Now, write to file
+			appendFileLine: "'directory$''outfile$'", "'myFileLine$'"
+		endfor
+
+	## if not:
+	else	 
+		myFileLine$ = name$ + "," + lingVars$ + printIntervalLabel$ + ",NA,NA,NA,NA,NA,NA"
 		appendFileLine: "'directory$''outfile$'", "'myFileLine$'"
-	endfor
+	endif
 
-    ## Save PointProcess object
-    select PointProcess 'name$'_degg_both
+  	## Save PointProcess object
+   	select PointProcess 'name$'_degg_both
     Save as text file... 'directory$''name$'_degg_both.PointProcess
+
 endproc

@@ -121,86 +121,98 @@ procedure getoq: .manualCheck
         nb_periods = (nb_peaks / 2) - 1
 
         ####################################
-        ## Get Oq using dEGG-only method 
+		## only continue if there is a 
+		## non-zero number of periods!!
         ####################################
 
-        @degg
+		if nb_periods > 0
 
-        ####################################
-        ## Get Oq using Howard's method 
-        ####################################
-        
-        @howard
+			####################################
+			## Get Oq using dEGG-only method 
+			####################################
 
-        #####################
-        ## Get skewness
-        #####################
-        
-        #@skewness
+			@degg
 
-        #####################
-        ## Plot and check
-        #####################
-       
-        if .manualCheck <> 0
-            @plotoq: plotName$
+			####################################
+			## Get Oq using Howard's method 
+			####################################
+			
+			@howard
 
-            beginPause: "Manual check options"
-                comment: "Do you want to manually add/delete any points? (1=yes)"
-                integer: ".manualCheck", .manualCheck
-            endPause: "Continue", 1
-    
-            ################################
-            ## Add/remove points if desired 
-            ################################
-            
-            if .manualCheck == 1
-                ## Remove existing Matrix objects since new ones will be created
-                select Matrix 'name$'_degg
-                plus Matrix 'name$'_howard
-                Remove
+			#####################
+			## Other procedures
+			#####################
+			
+			#@skewness
 
-                ## Now add/remove points
-                select PointProcess 'name$'_degg_both
-                plus Sound 'name$'_degg
-                View & Edit
-                editor: "PointProcess 'name$'_degg_both"
-                    Zoom: start_time, end_time
-                endeditor
-                pause Add missing peaks/delete spurious points
-                editor: "PointProcess 'name$'_degg_both"
-                    Close
-                endeditor
-            endif
-           
-            ################################
-            ## Exclude periods, if desired
-            ################################
-            
-            if .manualCheck == 0
-                ## Call procedure to allow user to exclude periods
-                @exclude 
-                ## We're done with this file. Set flag and write results to disk
-                .findOQ = 0
-            endif
+			#####################
+			## Plot and check
+			#####################
+		   
+			if .manualCheck <> 0
+				@plotoq: plotName$
 
-        else
-            ## Not doing manual check; get me out of this loop!
-            .findOQ = 0
-        endif 
+				beginPause: "Manual check options"
+					comment: "Do you want to manually add/delete any points? (1=yes)"
+					integer: ".manualCheck", .manualCheck
+				endPause: "Continue", 1
+		
+				################################
+				## Add/remove points if desired 
+				################################
+				
+				if .manualCheck == 1
+					## Remove existing Matrix objects since new ones will be created
+					select Matrix 'name$'_degg
+					plus Matrix 'name$'_howard
+					Remove
 
-    endwhile
-    
-    ##################################
-    ## Write to file and save objects
-    ##################################
-    @writelns
+					## Now add/remove points
+					select PointProcess 'name$'_degg_both
+					plus Sound 'name$'_degg
+					View & Edit
+					editor: "PointProcess 'name$'_degg_both"
+						Zoom: start_time, end_time
+					endeditor
+					pause Add missing peaks/delete spurious points
+					editor: "PointProcess 'name$'_degg_both"
+						Close
+					endeditor
+				endif
+			   
+				################################
+				## Exclude periods, if desired
+				################################
+				
+				if .manualCheck == 0
+					## Call procedure to allow user to exclude periods
+					@exclude 
+					## We're done with this file. Set flag and write results to disk
+					.findOQ = 0
+				endif
 
-    ###################
-    ## Clean up 
-    ###################
-    select Matrix 'name$'_degg
-    plus Matrix 'name$'_howard
-    Remove
+			else
+				## Not doing manual check; get me out of this loop!
+				.findOQ = 0
+			endif 
+
+		endwhile
+  
+		##################################
+		## Write to file and save objects
+		##################################
+		@writelns
+
+		###################
+		## Clean up 
+		###################
+		select Matrix 'name$'_degg
+		plus Matrix 'name$'_howard
+		Remove
+
+	## otherwise just write the single line
+	else
+		@writelns
+	endif
 
 endproc 
