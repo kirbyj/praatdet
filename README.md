@@ -7,10 +7,13 @@ A suite of Praat scripts to determine the open quotient (Oq) and fundamental fre
 
 This set of scripts was originally inspired by my attempts to use the [**peakdet**](http://voiceresearch.free.fr/egg/) tools developed by Nathalie Henrich, Cédric Grendrot, and Alexis Michaud. In the course of modifying their code to batch-process large numbers of files, I found myself wishing for a number of other modifications to the general [**peakdet**](http://voiceresearch.free.fr/egg/) workflow. Eventually I decided that the easiest solution would be try and implement something similar myself. I chose to work in Praat primarily because it provides a relatively intuitive and easy-to-use graphical interface for editing pulse trains. Praat comes with its own set of problems and I in no way claim it is superior to Matlab for this purpose; however, I have learned a great deal about working with EGG signals in the process of developing these tools.
 
+#### Update January 2020:
+
+As of version 6.1.04, **Praat now includes built-in functionality for working with EGG signals**. I haven't looked carefully at it, but it is no doubt worth exploring if you are interested in EGG.
+
 ## Warning!
 
 I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and in order to gain a better appreciation for the issues involved.
-
 
 ## Comments, suggestions, etc.
 
