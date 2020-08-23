@@ -144,11 +144,11 @@ for x from startFile to number_of_files
 
     else
     	## if there is no TextGrid, process the whole file
-        beginPause: "No such file"
-            comment: "File <'gridname$'.TextGrid> does not exist in directory"
-            comment: "'textgrid$'"
-            comment: "Using whole file as region of interest."
-        endPause: "Continue", 1
+        #beginPause: "No such file"
+        #    comment: "File <'gridname$'.TextGrid> does not exist in directory"
+        #    comment: "'textgrid$'"
+        #    comment: "Using whole file as region of interest."
+        #endPause: "Continue", 1
 		found_region = 1
     endif
 
