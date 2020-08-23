@@ -82,7 +82,7 @@ From the user's perspective, the most important script is ```praatdet.praat```. 
 
 3. If manually checking points and periods, **praatdet** will now present the user with a plot of the Oq values for the region of interest, estimated using both the dEGG and Howard methods, and a prompt asking "Do you want to manually add/delete any points?"
 
-	In general, the dEGG and Howard estimates of Oq should be similar. If they are not, or if the values are extremely close to 0 or 1, this usually means that either the first or the last peak detected was not a closing peak. To check this, click ```Continue``` in the **Pause: Manual check options** box. This will bring up an ```Edit``` window showing the dEGG signal and the detected points. **The first and last points should both be positive peaks!** This is because **praatdet** measures periods from closing peak to closing peak. It could have been done the other way, but it wasn't. 
+	In general, the dEGG and Howard estimates of Oq should be similar. If they are not, or if the values are extremely close to 0 or 1, this usually means that either the first or the last peak detected was not a closing peak. To check this, click ```Continue``` in the **Pause: Manual check options** box. This will bring up an ```Edit``` window showing the dEGG signal and the detected points. **The first and last points should both be positive peaks!** This is because **praatdet** measures periods from closing peak to closing peak. It could have been done the other way, but it wasn't. **UPDATE AUGUST 2020**: some new logic has been added to version 0.3 which should avoid this problem in most cases, and make automated processing safer. 
 	
 	Note that the ```Edit``` window will automatically zoom in to the region of interest, and that this corresponds to the plot in the ```Picture``` window.
 		
@@ -144,7 +144,7 @@ Peak detection proceeds in three stages:
 
 	which is then used to subsequent analysis; this is also the object that is ultimately saved.
 
-One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks. **praatdet** attempts to mitigate this by the inclusion of some logic to remove orphan peaks, so that before the user see the PointProcess, it should consist exclusively of positive-negative peak pairs that are not too temporally distant. 
+One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks. As of version 0.3, **praatdet** attempts to mitigate this by the inclusion of some logic to remove orphan peaks, so that before the user see the PointProcess, it should consist exclusively of positive-negative peak pairs that are not too temporally distant. 
 
 
 <a name="smoothing"></a>
