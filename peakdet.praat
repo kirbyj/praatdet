@@ -56,5 +56,47 @@ procedure peakdet
 		plus PointProcess 'name$'_degg_closing
 		Union
 		Rename... 'name$'_degg_both
+
+		# now go through remove orphan points
+		# ensure that all point pairs are positive followed by 
+		# negative and that closing-opening peak pairs occur within
+		# 1/minF0 sec of one another
+		num_points = Get number of points
+
+		# initialize counter
+		p = 1	
+
+		while p < (num_points - 1)
+			select PointProcess 'name$'_degg_both
+			t_this = Get time from index... p
+			t_next = Get time from index... p + 1
+	
+			select Sound 'name$'_degg
+
+			val_this = Get value at time... 1 't_this' Sinc70
+			val_next = Get value at time... 1 't_next' Sinc70
+
+			select PointProcess 'name$'_degg_both
+
+			# if next peak is too far away...
+			if ((t_next - t_this) > 1/minF0)
+				Remove point... p
+				num_points = num_points - 1
+				#pauseScript: "removed point 'p' at time 't_this:3' because next peak too far away"
+			# if the next peak is close enough...
+			else
+				# ...but also positive, treat current peak as orphaned		
+				if (val_next > 0)
+					Remove point... p
+					num_points = num_points - 1
+					#pauseScript: "removed point 'p' at time 't_this:3' because next peak is also positive"
+				# else move to next closing point
+				else
+					p = p + 2
+				endif
+			endif
+
+		endwhile
+
 	endif
 endproc
