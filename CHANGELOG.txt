@@ -1,3 +1,8 @@
+0.3 (23-08-2020)
+
+ - before manually editing points and periods, pre-process the PointProcess to remove orphan points
+ - removed pause notification when processing entire files
+
 0.2 (16-08-2018)
 
  - renamed oqmaster.praat to praatdet.praat
