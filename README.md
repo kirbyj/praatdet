@@ -15,7 +15,6 @@ As of version 6.1.04, **Praat now includes built-in functionality for working wi
 
 I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and in order to gain a better appreciation for the issues involved.
 
-<<<<<<< HEAD
 That having been said, the inverse of the ```degg_oq``` measure computed by **praatdet** is usually more or less identical to the ```CQ_PM``` measure output by [**EGGWorks**](https://appsobabble.com/functions/EGGWorks.aspx), while the inverse of the ```howard_oq``` measure is typically comparable to the EGGWorks ```CQ``` measure, depending somewhat on the threshold settings. The measures all appear to be highly correlated, so for *within-language* comparisons, the exact choice is maybe not so critical (as long as it is constant over all items in your analysis).
 
 ## Comments, suggestions, etc.
