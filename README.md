@@ -11,8 +11,9 @@ This set of scripts was originally inspired by my attempts to use the [**peakdet
 
 I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and in order to gain a better appreciation for the issues involved.
 
+That having been said, the inverse of the ```degg_oq``` measure computed by **praatdet** is usually more or less identical to the ```CQ_PM``` measure output by [**EGGWorks**](https://appsobabble.com/functions/EGGWorks.aspx), while the inverse of the ```howard_oq``` measure is typically comparable to the EGGWorks ```CQ``` measure, depending somewhat on the threshold settings. The measures all appear to be highly correlated, so for *within-language* comparisons, the exact choice is maybe not so critical (as long as it is constant over all items in your analysis).
 
-## Comments, suggestions, etc.
+#a Comments, suggestions, etc.
 
 Please send any comments, etc. to [j.kirby@ed.ac.uk](j.kirby@ed.ac.uk).
 
@@ -139,7 +140,7 @@ Peak detection proceeds in three stages:
 
 	which is then used to subsequent analysis; this is also the object that is ultimately saved.
 
-One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks.
+One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks. **praatdet** attempts to mitigate this by the inclusion of some logic to remove orphan peaks, so that before the user see the PointProcess, it should consist exclusively of positive-negative peak pairs that are not too temporally distant. 
 
 
 <a name="smoothing"></a>
