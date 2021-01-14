@@ -106,7 +106,7 @@ for x from startFile to number_of_files
         Formula... -self
     endif
    
-    ## default: process entire file if a region of interest is found, 
+    ## default: process entire file if no region of interest is found, 
     ## or if there is no associated TextGrid
     found_region = 0 
     select Sound 'filename$'
@@ -141,14 +141,15 @@ for x from startFile to number_of_files
             ## overwrite intervalLabel$ with something more useful
             ## problem: doing this means that we will not enter this condition next time
             #intervalLabel$ = Get label of interval... intervalTier intervalNum
+		endif
 
     else
     	## if there is no TextGrid, process the whole file
-        #beginPause: "No such file"
-        #    comment: "File <'gridname$'.TextGrid> does not exist in directory"
-        #    comment: "'textgrid$'"
-        #    comment: "Using whole file as region of interest."
-        #endPause: "Continue", 1
+        beginPause: "No such file"
+            comment: "File <'gridname$'.TextGrid> does not exist in directory"
+            comment: "'textgrid$'"
+            comment: "Using whole file as region of interest."
+        endPause: "Continue", 1
 		found_region = 1
     endif
 
