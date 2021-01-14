@@ -15,7 +15,6 @@ As of version 6.1.04, **Praat now includes built-in functionality for working wi
 
 I make no claims that the implementations here are correct, or that they will give the same results as some other set of EGG tools, etc. I developed them primarily for my own use case, and in order to gain a better appreciation for the issues involved.
 
-<<<<<<< HEAD
 That having been said, the inverse of the ```degg_oq``` measure computed by **praatdet** is usually more or less identical to the ```CQ_PM``` measure output by [**EGGWorks**](https://appsobabble.com/functions/EGGWorks.aspx), while the inverse of the ```howard_oq``` measure is typically comparable to the EGGWorks ```CQ``` measure, depending somewhat on the threshold settings. The measures all appear to be highly correlated, so for *within-language* comparisons, the exact choice is maybe not so critical (as long as it is constant over all items in your analysis).
 
 ## Comments, suggestions, etc.
@@ -39,7 +38,7 @@ Presently, Oq is determined using two methods:
 1. detection of the opening and closing peaks on the derivative of the EGG signal ("dEGG method"), and
 2. detection of the closing peak using the dEGG signal, and detection of the opening peak using an EGG-based threshold method ("Howard's method").
 
-The physiological correlates of peaks in the dEGG signal were studied extensively by Donald Childers and colleagues (e.g. Childers et al. 1986, 1990). Closing peaks are generally easily identified from the dEGG signal, but opening peaks may be indeterminate (Henrich et al. 2004, Michaud 2004). For this reason, while the maximum positive peak in the dEGG is usually used as an indicator the closing instant, an EGG-based threshold method may be used to determine the opening instant. Howard (1995), following Davies et al. (1986) and others, suggest a point where the negative-going Lx cross an amplitude threshold of 3:7 of that cycle's peak-to-peak amplitude. These are the two methods currently implemented in **praatdet**.
+The physiological correlates of peaks in the dEGG signal were studied extensively by Donald Childers and colleagues (e.g. Childers et al. 1986, 1990). Closing peaks are generally easily identified from the dEGG signal, but opening peaks may be indeterminate (Henrich et al. 2004, Michaud 2004). For this reason, while the maximum positive peak in the dEGG is usually used as an indicator the closing instant, an EGG-based threshold method may be used to determine the opening instant. Howard (1995), following Davies et al. (1986) and others, suggest a point where the negative-going Lx cross an amplitude threshold of 3:7 of that cycle's peak-to-peak amplitude. These are the two methods currently implemented in **praatdet**, although the choice of the threshold, which is arbitrary, is controlled by the user.
 
 The user may or may not have accompying TextGrids where regions of interest have been indicated. In the interest of file management simplicity, **praatdet** keeps just one (potentially user-corrected) PointProcess per file, but permits the user to only annotate/display Oq values for a particular region. For example, you may have a file containing a single word, segmented into onset, nucleus, and coda. In the first instance you may just want to determine Oq for the nucleus, but perhaps later you decide you are interested in the nasal coda as well. Since a single PointProcess object is associated with each EGG file, you can edit the detected peaks for the coda region while retaining your previous edits of the nucleus. For more details, see the [EXAMPLES](EXAMPLES.md) document.
 
@@ -83,7 +82,7 @@ From the user's perspective, the most important script is ```praatdet.praat```. 
 
 3. If manually checking points and periods, **praatdet** will now present the user with a plot of the Oq values for the region of interest, estimated using both the dEGG and Howard methods, and a prompt asking "Do you want to manually add/delete any points?"
 
-	In general, the dEGG and Howard estimates of Oq should be similar. If they are not, or if the values are extremely close to 0 or 1, this usually means that either the first or the last peak detected was not a closing peak. To check this, click ```Continue``` in the **Pause: Manual check options** box. This will bring up an ```Edit``` window showing the dEGG signal and the detected points. **The first and last points should both be positive peaks!** This is because **praatdet** measures periods from closing peak to closing peak. It could have been done the other way, but it wasn't. 
+	In general, the dEGG and Howard estimates of Oq should be similar. If they are not, or if the values are extremely close to 0 or 1, this usually means that either the first or the last peak detected was not a closing peak. To check this, click ```Continue``` in the **Pause: Manual check options** box. This will bring up an ```Edit``` window showing the dEGG signal and the detected points. **The first and last points should both be positive peaks!** This is because **praatdet** measures periods from closing peak to closing peak. It could have been done the other way, but it wasn't. **UPDATE AUGUST 2020**: some new logic has been added to version 0.3 which should avoid this problem in most cases, and make automated processing safer. 
 	
 	Note that the ```Edit``` window will automatically zoom in to the region of interest, and that this corresponds to the plot in the ```Picture``` window.
 		
@@ -145,7 +144,7 @@ Peak detection proceeds in three stages:
 
 	which is then used to subsequent analysis; this is also the object that is ultimately saved.
 
-One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks. **praatdet** attempts to mitigate this by the inclusion of some logic to remove orphan peaks, so that before the user see the PointProcess, it should consist exclusively of positive-negative peak pairs that are not too temporally distant. 
+One issue with using the Praat ```PointProcess``` is that the time window within which points are searched for is fixed. If this were modified, it could potentially lead to a reduction in errors involving multiple opening peaks. As of version 0.3, **praatdet** attempts to mitigate this by the inclusion of some logic to remove orphan peaks, so that before the user see the PointProcess, it should consist exclusively of positive-negative peak pairs that are not too temporally distant. 
 
 
 <a name="smoothing"></a>
