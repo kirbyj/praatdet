@@ -19,7 +19,7 @@ That having been said, the inverse of the ```degg_oq``` measure computed by **pr
 
 ## Comments, suggestions, etc.
 
-Please send any comments, etc. to [j.kirby@ed.ac.uk](j.kirby@ed.ac.uk).
+Please use the [issue tracker](https://github.com/kirbyj/praatdet/issues).
 
 
 ## Citing praatdet
