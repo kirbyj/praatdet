@@ -4,3 +4,4 @@
 
 - If "use PP from disk" is checked, Praatdet will fail if there is no PP for some files - maybe have a fallback to create if it doesn't exist?
 
+-  Add functionality to create PointProcess files that indicate the opening instant for threshold measures so that they could be plotted on the first derivative signal (or the filtered EGG signal) in Praat directly  
